@@ -1,0 +1,292 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:linear-gradient(180deg,#ffb7d5,#cdb7ff,#7b8cff);
+}
+
+.scene{
+position:absolute;
+inset:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+opacity:0;
+transition:.8s;
+pointer-events:none;
+}
+
+.scene.active{
+opacity:1;
+pointer-events:auto;
+}
+
+.card{
+width:min(90%,850px);
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:25px;
+text-align:center;
+color:white;
+}
+
+.card h2{
+margin-bottom:20px;
+}
+
+.card p{
+line-height:1.8;
+font-size:1.05rem;
+}
+
+.emoji{
+font-size:90px;
+margin-bottom:20px;
+animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+50%{
+transform:translateY(-10px);
+}
+}
+
+.controls{
+position:fixed;
+bottom:25px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:10px;
+}
+
+button{
+padding:12px 24px;
+border:none;
+border-radius:40px;
+background:#ff4fa0;
+color:white;
+cursor:pointer;
+}
+
+.counter{
+position:fixed;
+top:20px;
+right:20px;
+background:white;
+padding:10px 15px;
+border-radius:30px;
+font-weight:bold;
+}
+
+.heart{
+position:fixed;
+font-size:24px;
+pointer-events:none;
+animation:float 8s linear infinite;
+}
+
+@keyframes float{
+from{
+transform:translateY(110vh);
+}
+to{
+transform:translateY(-120px);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="counter" id="counter"></div>
+
+<div class="scene active">
+<div class="card">
+<div class="emoji">📱💕</div>
+<h2>Scene 1 — Mutual Friend Request</h2>
+<p>A simple mutual friend request started everything.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">💬✨</div>
+<h2>Scene 2 — Started Talking</h2>
+<p>One conversation became many conversations.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">📚✍️</div>
+<h2>Scene 3 — College Records</h2>
+<p>Helping with college records brought us closer.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">☕🌸</div>
+<h2>Scene 4 — Best Friends</h2>
+<p>We became each other's daily routine.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">🌧️🤍</div>
+<h2>Scene 5 — Misunderstandings</h2>
+<p>We had ups and downs but never gave up.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">❤️🌹</div>
+<h2>Scene 6 — Falling In Love</h2>
+<p>Somewhere between friendship and forever, we fell in love.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">💌💕</div>
+<h2>Scene 7 — February 1, 2021</h2>
+<p>You confessed your love and I said yes.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">✈️🇺🇦</div>
+<h2>Scene 8 — Ukraine</h2>
+<p>You left to study medicine. Distance arrived but love stayed.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">🏠💙</div>
+<h2>Scene 9 — Home Again</h2>
+<p>Life changed direction and brought you home again.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">🌍✈️</div>
+<h2>Scene 10 — Uzbekistan</h2>
+<p>A new chapter began.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">📱❤️📱</div>
+<h2>Scene 11 — Long Distance</h2>
+<p>Distance tested us but never broke us.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">🛣️💑</div>
+<h2>Scene 12 — Future Together</h2>
+<p>A beautiful future still waits ahead.</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">🎂🎈❤️</div>
+<h2>Happy Birthday Mr. C</h2>
+<p>
+I'm proud of you.<br>
+I'm grateful for you.<br>
+I love you so much.<br><br>
+Happy Birthday ❤️
+</p>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="emoji">✨❤️✨</div>
+<h2>The End</h2>
+<p>
+Thank you for being part of my story.<br>
+— Harshitha
+</p>
+</div>
+</div>
+
+<div class="controls">
+<button onclick="prevScene()">⬅ Previous</button>
+<button onclick="nextScene()">Next ➡</button>
+</div>
+
+<script>
+const scenes=document.querySelectorAll(".scene");
+const counter=document.getElementById("counter");
+
+let current=0;
+
+function showScene(){
+scenes.forEach(s=>s.classList.remove("active"));
+scenes[current].classList.add("active");
+counter.innerHTML=(current+1)+" / "+scenes.length;
+}
+
+function nextScene(){
+if(current<scenes.length-1){
+current++;
+showScene();
+}
+}
+
+function prevScene(){
+if(current>0){
+current--;
+showScene();
+}
+}
+
+showScene();
+
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML=Math.random()>0.5?"❤️":"🌸";
+heart.style.left=Math.random()*100+"%";
+heart.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},10000);
+
+},500);
+</script>
+
+</body>
+</html>
+```
