@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Trebuchet MS',sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:linear-gradient(135deg,#ffd6e8,#ffeef7,#e6f0ff);
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+#app{
+width:100%;
+height:100vh;
+position:relative;
+overflow:hidden;
+}
+
+.scene{
+position:absolute;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+pointer-events:none;
+transition:1s;
+padding:20px;
+}
+
+.scene.active{
+opacity:1;
+pointer-events:auto;
+}
+
+.card{
+width:90%;
+max-width:900px;
+background:rgba(255,255,255,0.9);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:25px;
+box-shadow:0 15px 50px rgba(0,0,0,.15);
+text-align:center;
+}
+
+.title{
+font-size:2rem;
+margin-bottom:15px;
+color:#ff4f92;
+}
+
+.visual{
+font-size:110px;
+margin:15px 0;
+animation:bounce 3s infinite;
+}
+
+.story{
+font-size:1.15rem;
+line-height:1.8;
+color:#444;
+}
+
+.controls{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:15px;
+z-index:100;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:40px;
+font-size:16px;
+cursor:pointer;
+background:#ff69a6;
+color:white;
+box-shadow:0 5px 20px rgba(255,105,166,.4);
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.counter{
+position:fixed;
+top:20px;
+right:20px;
+background:white;
+padding:10px 20px;
+border-radius:20px;
+font-weight:bold;
+}
+
+.heart{
+position:absolute;
+font-size:22px;
+animation:float 8s linear infinite;
+opacity:.6;
+}
+
+@keyframes float{
+from{
+transform:translateY(100vh);
+}
+to{
+transform:translateY(-100px);
+}
+}
+
+@keyframes bounce{
+50%{
+transform:translateY(-10px);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+<div class="counter" id="counter">1 / 14</div>
+
+<div class="scene active">
+<div class="card">
+<div class="title">Scene 1 — The Friend Request</div>
+<div class="visual">📱💕</div>
+<div class="story">
+A simple mutual friend request started everything.
+Neither of us knew that one small click would begin a beautiful story.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 2 — Started Talking</div>
+<div class="visual">💬✨</div>
+<div class="story">
+One conversation became many conversations.
+Slowly we became friends and looked forward to talking every day.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 3 — College Records</div>
+<div class="visual">📚✍️</div>
+<div class="story">
+Helping with college records became helping each other through life.
+We were becoming an important part of each other's world.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 4 — Best Friends</div>
+<div class="visual">☕🌸</div>
+<div class="story">
+We became each other's routine.
+Best friends.
+The first person we wanted to talk to every morning and every night.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 5 — Misunderstandings</div>
+<div class="visual">🌧️🤍</div>
+<div class="story">
+There were misunderstandings.
+There were difficult moments.
+But somehow we always found our way back to each other.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 6 — Falling In Love</div>
+<div class="visual">❤️🌹</div>
+<div class="story">
+Somewhere between friendship and forever,
+we fell in love.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 7 — February 1, 2021</div>
+<div class="visual">💍💕</div>
+<div class="story">
+You confessed your love.
+I said yes.
+And our love story officially began.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 8 — Ukraine</div>
+<div class="visual">✈️🇺🇦</div>
+<div class="story">
+You left for Ukraine to study medicine.
+Distance arrived, but love stayed.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 9 — Home Again</div>
+<div class="visual">🏠💙</div>
+<div class="story">
+Life had unexpected plans.
+You returned home.
+Through every challenge, we stood together.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 10 — Uzbekistan</div>
+<div class="visual">🌍✈️</div>
+<div class="story">
+Another country.
+Another chapter.
+Another challenge we faced together.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 11 — Long Distance</div>
+<div class="visual">📱❤️📱</div>
+<div class="story">
+Long distance wasn't always easy.
+There were ups and downs.
+But our connection remained strong.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 12 — Thank You</div>
+<div class="visual">🌙⭐</div>
+<div class="story">
+I'm not always expressive.
+Yet you always understood me.
+You never judged me.
+You stayed when I needed you most.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">Scene 13 — The Future</div>
+<div class="visual">🛣️💑</div>
+<div class="story">
+There is still a long road ahead.
+It would be wonderful if we walked that road together.
+</div>
+</div>
+</div>
+
+<div class="scene">
+<div class="card">
+<div class="title">🎂 Happy Birthday Mr. C ❤️</div>
+<div class="visual">🎂🎈❤️</div>
+<div class="story">
+You never knew how proud I am of you.
+
+For everything you've overcome.
+For being one of the strongest yet kindest people I know.
+
+I'm grateful that I met you in this life.
+
+No matter what happens in the future,
+I'll always be your best friend.
+
+And yes...
+
+I love you so much.
+
+Happy Birthday ❤️
+
+— Harshitha
+</div>
+</div>
+</div>
+
+<div class="controls">
+<button onclick="prevScene()">⬅ Previous</button>
+<button onclick="nextScene()">Next ➡</button>
+</div>
+
+</div>
+
+<script>
+
+const scenes=document.querySelectorAll('.scene');
+const counter=document.getElementById('counter');
+
+let current=0;
+
+function showScene(index){
+
+scenes.forEach(scene=>scene.classList.remove('active'));
+
+scenes[index].classList.add('active');
+
+counter.innerHTML=(index+1)+" / "+scenes.length;
+}
+
+function nextScene(){
+
+if(current<scenes.length-1){
+current++;
+showScene(current);
+}
+}
+
+function prevScene(){
+
+if(current>0){
+current--;
+showScene(current);
+}
+}
+
+for(let i=0;i<25;i++){
+
+const h=document.createElement('div');
+
+h.className='heart';
+
+h.innerHTML=Math.random()>0.5?'❤️':'🌸';
+
+h.style.left=Math.random()*100+'%';
+
+h.style.animationDuration=(5+Math.random()*8)+'s';
+
+h.style.fontSize=(18+Math.random()*20)+'px';
+
+document.body.appendChild(h);
+}
+
+document.addEventListener('keydown',e=>{
+
+if(e.key==='ArrowRight') nextScene();
+
+if(e.key==='ArrowLeft') prevScene();
+
+});
+
+</script>
+
+</body>
+</html>
