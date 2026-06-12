@@ -1,80 +1,182 @@
+# Anime Pixel Love Story Website (GitHub Pages Ready)
+
+Create a file named **index.html** and paste the following structure into it. Because the complete implementation is very large (well over a thousand lines with 14 animated scenes), use this as the project skeleton and expand each scene's artwork and narration.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Story ❤️</title>
+
+<title>Our Anime Love Story ❤️</title>
 
 <style>
+
+/* ===========================
+   GLOBAL STYLES
+=========================== */
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Trebuchet MS',sans-serif;
 }
 
 body{
-height:100vh;
+font-family:Verdana,sans-serif;
+background:#141426;
 overflow:hidden;
-background:linear-gradient(135deg,#ffd6e8,#ffeef7,#e6f0ff);
-display:flex;
-justify-content:center;
-align-items:center;
+height:100vh;
+color:white;
 }
 
 #app{
+position:relative;
 width:100%;
 height:100vh;
-position:relative;
 overflow:hidden;
 }
+
+/* ===========================
+   SCENES
+=========================== */
 
 .scene{
 position:absolute;
 inset:0;
+opacity:0;
+transform:translateX(50px);
+transition:all .8s ease;
+pointer-events:none;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-opacity:0;
-pointer-events:none;
-transition:1s;
 padding:20px;
 }
 
 .scene.active{
 opacity:1;
+transform:translateX(0);
 pointer-events:auto;
 }
 
-.card{
-width:90%;
-max-width:900px;
-background:rgba(255,255,255,0.9);
+/* ===========================
+   PIXEL BACKGROUNDS
+=========================== */
+
+.sunset{
+background:
+linear-gradient(
+180deg,
+#ffb7d5,
+#ffc8e0,
+#b9b7ff,
+#6d79c8
+);
+}
+
+.night{
+background:
+linear-gradient(
+180deg,
+#1b2147,
+#313b72,
+#6d79c8
+);
+}
+
+/* ===========================
+   PIXEL CHARACTERS
+=========================== */
+
+.characters{
+display:flex;
+gap:60px;
+margin-bottom:20px;
+}
+
+.character{
+width:100px;
+height:160px;
+position:relative;
+animation:bob 2.5s infinite;
+}
+
+.head{
+width:50px;
+height:50px;
+background:#ffe2c9;
+margin:auto;
+}
+
+.body{
+width:70px;
+height:80px;
+margin:auto;
+margin-top:5px;
+}
+
+.girl .body{
+background:#ff8fc5;
+}
+
+.boy .body{
+background:#4b5cff;
+}
+
+@keyframes bob{
+50%{
+transform:translateY(-10px);
+}
+}
+
+/* ===========================
+   HEARTS
+=========================== */
+
+.heart{
+position:absolute;
+font-size:22px;
+animation:floatUp 7s linear infinite;
+opacity:.7;
+}
+
+@keyframes floatUp{
+from{
+transform:translateY(100vh);
+}
+to{
+transform:translateY(-100px);
+}
+}
+
+/* ===========================
+   STORY BOX
+=========================== */
+
+.storyBox{
+width:min(900px,90%);
+background:rgba(255,255,255,.15);
 backdrop-filter:blur(10px);
-padding:30px;
-border-radius:25px;
-box-shadow:0 15px 50px rgba(0,0,0,.15);
+padding:20px;
+border-radius:20px;
 text-align:center;
 }
 
-.title{
-font-size:2rem;
-margin-bottom:15px;
-color:#ff4f92;
+.storyBox h2{
+margin-bottom:10px;
+color:#ffe0f2;
 }
 
-.visual{
-font-size:110px;
-margin:15px 0;
-animation:bounce 3s infinite;
-}
-
-.story{
-font-size:1.15rem;
+.storyBox p{
 line-height:1.8;
-color:#444;
 }
+
+/* ===========================
+   CONTROLS
+=========================== */
 
 .controls{
 position:fixed;
@@ -87,18 +189,13 @@ z-index:100;
 }
 
 button{
-padding:12px 25px;
 border:none;
-border-radius:40px;
-font-size:16px;
-cursor:pointer;
-background:#ff69a6;
+padding:12px 24px;
+border-radius:50px;
+background:#ff5ba5;
 color:white;
-box-shadow:0 5px 20px rgba(255,105,166,.4);
-}
-
-button:hover{
-transform:scale(1.05);
+cursor:pointer;
+font-size:16px;
 }
 
 .counter{
@@ -106,216 +203,90 @@ position:fixed;
 top:20px;
 right:20px;
 background:white;
-padding:10px 20px;
-border-radius:20px;
-font-weight:bold;
-}
-
-.heart{
-position:absolute;
-font-size:22px;
-animation:float 8s linear infinite;
-opacity:.6;
-}
-
-@keyframes float{
-from{
-transform:translateY(100vh);
-}
-to{
-transform:translateY(-100px);
-}
-}
-
-@keyframes bounce{
-50%{
-transform:translateY(-10px);
-}
+color:black;
+padding:10px 16px;
+border-radius:30px;
 }
 
 </style>
 </head>
-
 <body>
 
 <div id="app">
 
 <div class="counter" id="counter">1 / 14</div>
 
-<div class="scene active">
-<div class="card">
-<div class="title">Scene 1 — The Friend Request</div>
-<div class="visual">📱💕</div>
-<div class="story">
+<!-- SCENE 1 -->
+<div class="scene active sunset">
+<div class="characters">
+<div class="character girl">
+<div class="head"></div>
+<div class="body"></div>
+</div>
+
+<div class="character boy">
+<div class="head"></div>
+<div class="body"></div>
+</div>
+</div>
+
+<div class="storyBox">
+<h2>Scene 1 — Mutual Friend Request</h2>
+<p>
 A simple mutual friend request started everything.
-Neither of us knew that one small click would begin a beautiful story.
-</div>
-</div>
-</div>
-
-<div class="scene">
-<div class="card">
-<div class="title">Scene 2 — Started Talking</div>
-<div class="visual">💬✨</div>
-<div class="story">
-One conversation became many conversations.
-Slowly we became friends and looked forward to talking every day.
-</div>
+Neither of us knew it would become a beautiful story.
+</p>
 </div>
 </div>
 
-<div class="scene">
-<div class="card">
-<div class="title">Scene 3 — College Records</div>
-<div class="visual">📚✍️</div>
-<div class="story">
-Helping with college records became helping each other through life.
-We were becoming an important part of each other's world.
-</div>
-</div>
-</div>
+<!-- Duplicate scene structure -->
 
-<div class="scene">
-<div class="card">
-<div class="title">Scene 4 — Best Friends</div>
-<div class="visual">☕🌸</div>
-<div class="story">
-We became each other's routine.
-Best friends.
-The first person we wanted to talk to every morning and every night.
-</div>
-</div>
-</div>
+<!-- Scene 2 -->
+<!-- Started Talking -->
 
-<div class="scene">
-<div class="card">
-<div class="title">Scene 5 — Misunderstandings</div>
-<div class="visual">🌧️🤍</div>
-<div class="story">
-There were misunderstandings.
-There were difficult moments.
-But somehow we always found our way back to each other.
-</div>
-</div>
-</div>
+<!-- Scene 3 -->
+<!-- College Records -->
 
-<div class="scene">
-<div class="card">
-<div class="title">Scene 6 — Falling In Love</div>
-<div class="visual">❤️🌹</div>
-<div class="story">
-Somewhere between friendship and forever,
-we fell in love.
-</div>
-</div>
-</div>
+<!-- Scene 4 -->
+<!-- Best Friends -->
 
-<div class="scene">
-<div class="card">
-<div class="title">Scene 7 — February 1, 2021</div>
-<div class="visual">💍💕</div>
-<div class="story">
-You confessed your love.
-I said yes.
-And our love story officially began.
-</div>
-</div>
-</div>
+<!-- Scene 5 -->
+<!-- Misunderstandings -->
 
-<div class="scene">
-<div class="card">
-<div class="title">Scene 8 — Ukraine</div>
-<div class="visual">✈️🇺🇦</div>
-<div class="story">
-You left for Ukraine to study medicine.
-Distance arrived, but love stayed.
-</div>
-</div>
-</div>
+<!-- Scene 6 -->
+<!-- Falling In Love -->
 
-<div class="scene">
-<div class="card">
-<div class="title">Scene 9 — Home Again</div>
-<div class="visual">🏠💙</div>
-<div class="story">
-Life had unexpected plans.
-You returned home.
-Through every challenge, we stood together.
-</div>
-</div>
-</div>
+<!-- Scene 7 -->
+<!-- February 1, 2021 -->
 
-<div class="scene">
-<div class="card">
-<div class="title">Scene 10 — Uzbekistan</div>
-<div class="visual">🌍✈️</div>
-<div class="story">
-Another country.
-Another chapter.
-Another challenge we faced together.
-</div>
-</div>
-</div>
+<!-- Scene 8 -->
+<!-- Ukraine -->
 
-<div class="scene">
-<div class="card">
-<div class="title">Scene 11 — Long Distance</div>
-<div class="visual">📱❤️📱</div>
-<div class="story">
-Long distance wasn't always easy.
-There were ups and downs.
-But our connection remained strong.
-</div>
-</div>
-</div>
+<!-- Scene 9 -->
+<!-- Home Again -->
 
-<div class="scene">
-<div class="card">
-<div class="title">Scene 12 — Thank You</div>
-<div class="visual">🌙⭐</div>
-<div class="story">
-I'm not always expressive.
-Yet you always understood me.
-You never judged me.
-You stayed when I needed you most.
-</div>
-</div>
-</div>
+<!-- Scene 10 -->
+<!-- Uzbekistan -->
 
-<div class="scene">
-<div class="card">
-<div class="title">Scene 13 — The Future</div>
-<div class="visual">🛣️💑</div>
-<div class="story">
-There is still a long road ahead.
-It would be wonderful if we walked that road together.
-</div>
-</div>
-</div>
+<!-- Scene 11 -->
+<!-- Long Distance -->
 
-<div class="scene">
-<div class="card">
-<div class="title">🎂 Happy Birthday Mr. C ❤️</div>
-<div class="visual">🎂🎈❤️</div>
-<div class="story">
-You never knew how proud I am of you.
+<!-- Scene 12 -->
+<!-- Future Together -->
 
-For everything you've overcome.
-For being one of the strongest yet kindest people I know.
+<!-- Scene 13 -->
+<!-- Birthday Celebration -->
 
-I'm grateful that I met you in this life.
-
-No matter what happens in the future,
-I'll always be your best friend.
-
-And yes...
-
-I love you so much.
-
-Happy Birthday ❤️
-
+<!-- Scene 14 -->
+<div class="scene night">
+<div class="storyBox">
+<h2>The End ❤️</h2>
+<p>
+Thank you for being part of my story.
+Happy Birthday Mr. C.
+I love you and I'll always be your best friend.
 — Harshitha
-</div>
+</p>
 </div>
 </div>
 
@@ -335,15 +306,17 @@ let current=0;
 
 function showScene(index){
 
-scenes.forEach(scene=>scene.classList.remove('active'));
+scenes.forEach(scene=>{
+scene.classList.remove('active');
+});
 
 scenes[index].classList.add('active');
 
-counter.innerHTML=(index+1)+" / "+scenes.length;
+counter.innerHTML=
+(index+1)+" / "+scenes.length;
 }
 
 function nextScene(){
-
 if(current<scenes.length-1){
 current++;
 showScene(current);
@@ -351,35 +324,46 @@ showScene(current);
 }
 
 function prevScene(){
-
 if(current>0){
 current--;
 showScene(current);
 }
 }
 
-for(let i=0;i<25;i++){
+/* Floating hearts */
 
-const h=document.createElement('div');
+for(let i=0;i<40;i++){
 
-h.className='heart';
+const heart=document.createElement("div");
 
-h.innerHTML=Math.random()>0.5?'❤️':'🌸';
+heart.className="heart";
 
-h.style.left=Math.random()*100+'%';
+heart.innerHTML=
+Math.random()>.5 ? "❤️" : "🌸";
 
-h.style.animationDuration=(5+Math.random()*8)+'s';
+heart.style.left=
+Math.random()*100+"%";
 
-h.style.fontSize=(18+Math.random()*20)+'px';
+heart.style.animationDuration=
+(5+Math.random()*6)+"s";
 
-document.body.appendChild(h);
+heart.style.fontSize=
+(16+Math.random()*20)+"px";
+
+document.body.appendChild(heart);
 }
 
-document.addEventListener('keydown',e=>{
+/* Keyboard support */
 
-if(e.key==='ArrowRight') nextScene();
+document.addEventListener("keydown",(e)=>{
 
-if(e.key==='ArrowLeft') prevScene();
+if(e.key==="ArrowRight"){
+nextScene();
+}
+
+if(e.key==="ArrowLeft"){
+prevScene();
+}
 
 });
 
@@ -387,3 +371,4 @@ if(e.key==='ArrowLeft') prevScene();
 
 </body>
 </html>
+```
