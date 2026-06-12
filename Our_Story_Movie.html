@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our Story Movie</title>
+<style>
+body{margin:0;background:#090d20;color:#fff;font-family:Arial,sans-serif;overflow:hidden}
+#scene{height:100vh;position:relative;background:linear-gradient(#18204d,#ff8ab8)}
+.char{position:absolute;bottom:140px;width:80px;height:140px;border-radius:12px}
+.boy{background:#111;left:-120px}
+.girl{background:#ff9cc6;right:-120px}
+.dialog{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:85%;padding:16px;border:2px solid #fff;background:rgba(0,0,0,.7)}
+.controls{position:absolute;top:15px;right:15px;z-index:10}
+button{padding:10px}
+.heart{position:absolute;animation:float 4s linear infinite}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(-300px);opacity:0}}
+</style>
+</head>
+<body>
+<div id="scene">
+<div class="controls"><button onclick="prev()">Prev</button><button onclick="next()">Next</button></div>
+<div id="title"></div>
+<div class="char boy" id="boy"></div>
+<div class="char girl" id="girl"></div>
+<div class="dialog" id="dialog"></div>
+</div>
+<script>
+const scenes=[
+["Friend Request","A simple mutual friend request started it all."],
+["Started Talking","One conversation became many."],
+["College Records","Helping with college records."],
+["Best Friends","We became best friends."],
+["Misunderstandings","We stayed together."],
+["Falling In Love","We fell in love."],
+["February 1, 2021","I said yes."],
+["Ukraine","Distance arrived."],
+["Back Home","Life had turns."],
+["Uzbekistan","New places, same us."],
+["Long Distance","Our bond stayed strong."],
+["Future Together","Us, always."],
+["Birthday","Happy Birthday Mr. C"],
+["The End","Thank you for watching"]
+];
+let i=0;
+function hearts(){
+ for(let j=0;j<8;j++){
+  let h=document.createElement('div');
+  h.className='heart'; h.innerHTML='❤️';
+  h.style.left=(10+Math.random()*80)+'%';
+  h.style.bottom='120px';
+  document.getElementById('scene').appendChild(h);
+  setTimeout(()=>h.remove(),4000);
+ }
+}
+function show(){
+ title.innerHTML='<h2 style="padding:15px">'+scenes[i][0]+'</h2>';
+ dialog.textContent=scenes[i][1];
+ boy.style.transition='3s'; girl.style.transition='3s';
+ boy.style.left='35%'; girl.style.right='35%';
+ hearts();
+}
+function next(){i=(i+1)%scenes.length;reset();show();}
+function prev(){i=(i-1+scenes.length)%scenes.length;reset();show();}
+function reset(){boy.style.left='-120px';girl.style.right='-120px';}
+show();
+setInterval(next,7000);
+</script>
+</body>
+</html>
