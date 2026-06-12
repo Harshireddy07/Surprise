@@ -1,21 +1,14 @@
-# Anime Pixel Love Story Website (GitHub Pages Ready)
-
-Create a file named **index.html** and paste the following structure into it. Because the complete implementation is very large (well over a thousand lines with 14 animated scenes), use this as the project skeleton and expand each scene's artwork and narration.
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story ❤️</title>
 
-<title>Our Anime Love Story ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
-
-/* ===========================
-   GLOBAL STYLES
-=========================== */
 
 *{
 margin:0;
@@ -24,11 +17,11 @@ box-sizing:border-box;
 }
 
 body{
-font-family:Verdana,sans-serif;
-background:#141426;
+font-family:'Press Start 2P',cursive;
 overflow:hidden;
-height:100vh;
+background:#121224;
 color:white;
+height:100vh;
 }
 
 #app{
@@ -38,42 +31,42 @@ height:100vh;
 overflow:hidden;
 }
 
-/* ===========================
+/* =========================
    SCENES
-=========================== */
+========================= */
 
 .scene{
 position:absolute;
 inset:0;
-opacity:0;
-transform:translateX(50px);
-transition:all .8s ease;
-pointer-events:none;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+opacity:0;
+pointer-events:none;
+transform:scale(.95);
+transition:all .8s ease;
 padding:20px;
 }
 
 .scene.active{
 opacity:1;
-transform:translateX(0);
 pointer-events:auto;
+transform:scale(1);
 }
 
-/* ===========================
-   PIXEL BACKGROUNDS
-=========================== */
+/* =========================
+   BACKGROUNDS
+========================= */
 
 .sunset{
 background:
 linear-gradient(
 180deg,
-#ffb7d5,
-#ffc8e0,
-#b9b7ff,
-#6d79c8
+#ffb5d9 0%,
+#ffc7dd 25%,
+#c8c0ff 70%,
+#7d88da 100%
 );
 }
 
@@ -81,106 +74,181 @@ linear-gradient(
 background:
 linear-gradient(
 180deg,
-#1b2147,
-#313b72,
-#6d79c8
+#1d2550 0%,
+#2c3976 50%,
+#536ac7 100%
 );
 }
 
-/* ===========================
-   PIXEL CHARACTERS
-=========================== */
+.ending{
+background:
+linear-gradient(
+180deg,
+#ffbfd8,
+#ddb7ff,
+#8795ff
+);
+}
+
+.pixel-bg{
+position:absolute;
+inset:0;
+overflow:hidden;
+z-index:-2;
+}
+
+/* stars */
+
+.pixel-bg::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle,#fff 2px,transparent 2px);
+background-size:80px 80px;
+opacity:.4;
+animation:twinkle 6s linear infinite;
+}
+
+@keyframes twinkle{
+
+50%{
+opacity:.9;
+}
+
+}
+
+/* =========================
+   CHARACTERS
+========================= */
 
 .characters{
 display:flex;
-gap:60px;
-margin-bottom:20px;
+align-items:flex-end;
+gap:70px;
+margin-bottom:40px;
 }
 
-.character{
-width:100px;
+.girl,
+.boy{
+width:90px;
 height:160px;
 position:relative;
-animation:bob 2.5s infinite;
+animation:bounce 2.5s infinite;
 }
 
-.head{
+/* heads */
+
+.girl::before,
+.boy::before{
+content:"";
+position:absolute;
+top:0;
+left:20px;
 width:50px;
 height:50px;
-background:#ffe2c9;
-margin:auto;
+background:#ffe0c4;
+border:4px solid #222;
 }
 
-.body{
+/* bodies */
+
+.girl::after{
+content:"";
+position:absolute;
+top:55px;
+left:10px;
 width:70px;
-height:80px;
-margin:auto;
-margin-top:5px;
+height:90px;
+background:#ff6db0;
+border:4px solid #222;
 }
 
-.girl .body{
-background:#ff8fc5;
+.boy::after{
+content:"";
+position:absolute;
+top:55px;
+left:10px;
+width:70px;
+height:90px;
+background:#4b6dff;
+border:4px solid #222;
 }
 
-.boy .body{
-background:#4b5cff;
+/* emotional states */
+
+.happy{
+filter:drop-shadow(0 0 15px #ffe173);
 }
 
-@keyframes bob{
+.love{
+filter:drop-shadow(0 0 18px #ff6da8);
+}
+
+.sad{
+filter:grayscale(.4);
+}
+
+.plane{
+animation:
+bounce 2.5s infinite,
+fly 6s infinite;
+}
+
+@keyframes bounce{
+
 50%{
 transform:translateY(-10px);
 }
+
 }
 
-/* ===========================
-   HEARTS
-=========================== */
+@keyframes fly{
 
-.heart{
-position:absolute;
-font-size:22px;
-animation:floatUp 7s linear infinite;
-opacity:.7;
+50%{
+transform:
+translateY(-25px)
+translateX(20px);
 }
 
-@keyframes floatUp{
-from{
-transform:translateY(100vh);
-}
-to{
-transform:translateY(-100px);
-}
 }
 
-/* ===========================
+/* =========================
    STORY BOX
-=========================== */
+========================= */
 
-.storyBox{
+.story-box{
 width:min(900px,90%);
 background:rgba(255,255,255,.15);
 backdrop-filter:blur(10px);
-padding:20px;
-border-radius:20px;
+padding:25px;
+border-radius:25px;
+box-shadow:
+0 15px 40px rgba(0,0,0,.25);
 text-align:center;
 }
 
-.storyBox h2{
-margin-bottom:10px;
-color:#ffe0f2;
+.story-box h1,
+.story-box h2{
+color:#fff;
+margin-bottom:20px;
+font-size:1.1rem;
+line-height:1.6;
 }
 
-.storyBox p{
-line-height:1.8;
+.story-box p{
+font-family:Verdana,sans-serif;
+font-size:1rem;
+line-height:1.9;
 }
 
-/* ===========================
-   CONTROLS
-=========================== */
+/* =========================
+   BUTTONS
+========================= */
 
 .controls{
 position:fixed;
-bottom:20px;
+bottom:25px;
 left:50%;
 transform:translateX(-50%);
 display:flex;
@@ -190,185 +258,666 @@ z-index:100;
 
 button{
 border:none;
-padding:12px 24px;
-border-radius:50px;
-background:#ff5ba5;
+padding:14px 22px;
+border-radius:40px;
+background:#ff5ea9;
 color:white;
+font-size:.85rem;
 cursor:pointer;
-font-size:16px;
+transition:.3s;
+font-family:'Press Start 2P',cursive;
 }
+
+button:hover{
+transform:scale(1.08);
+background:#ff479d;
+}
+
+/* =========================
+   COUNTER
+========================= */
 
 .counter{
 position:fixed;
 top:20px;
 right:20px;
+padding:12px 18px;
 background:white;
-color:black;
-padding:10px 16px;
+color:#333;
 border-radius:30px;
+font-size:.8rem;
+z-index:100;
 }
 
+/* =========================
+   HEARTS
+========================= */
+
+#hearts{
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+}
+
+.heart{
+position:absolute;
+font-size:22px;
+animation:floatHeart linear infinite;
+opacity:.8;
+}
+
+@keyframes floatHeart{
+
+from{
+transform:
+translateY(110vh)
+rotate(0deg);
+}
+
+to{
+transform:
+translateY(-120px)
+rotate(360deg);
+}
+
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+.characters{
+gap:25px;
+}
+
+.girl,
+.boy{
+width:65px;
+height:120px;
+}
+
+.story-box h2{
+font-size:.8rem;
+}
+
+.story-box p{
+font-size:.9rem;
+}
+
+button{
+font-size:.65rem;
+padding:12px 16px;
+}
+
+.counter{
+font-size:.65rem;
+}
+
+}
 </style>
+
 </head>
+
 <body>
 
-<div id="app">
+<div id="hearts"></div>
 
 <div class="counter" id="counter">1 / 14</div>
 
-<!-- SCENE 1 -->
-<div class="scene active sunset">
+<div id="app">
+
+<!-- Scene 1 -->
+<section class="scene active sunset">
+<div class="pixel-bg"></div>
+
 <div class="characters">
-<div class="character girl">
-<div class="head"></div>
-<div class="body"></div>
+<div class="girl"></div>
+<div class="boy"></div>
 </div>
 
-<div class="character boy">
-<div class="head"></div>
-<div class="body"></div>
-</div>
-</div>
-
-<div class="storyBox">
+<div class="story-box">
 <h2>Scene 1 — Mutual Friend Request</h2>
 <p>
 A simple mutual friend request started everything.
-Neither of us knew it would become a beautiful story.
+Neither of us knew one click would become our favorite story.
 </p>
 </div>
-</div>
-
-<!-- Duplicate scene structure -->
+</section>
 
 <!-- Scene 2 -->
-<!-- Started Talking -->
+<section class="scene sunset">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl happy"></div>
+<div class="boy happy"></div>
+</div>
+
+<div class="story-box">
+<h2>Scene 2 — Started Talking</h2>
+<p>
+One conversation became many conversations.
+Slowly we became friends and looked forward to hearing from each other every day.
+</p>
+</div>
+</section>
 
 <!-- Scene 3 -->
-<!-- College Records -->
+<section class="scene sunset">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl"></div>
+<div class="boy"></div>
+</div>
+
+<div class="story-box">
+<h2>Scene 3 — College Records</h2>
+<p>
+Helping with college records slowly became helping each other through life.
+</p>
+</div>
+</section>
 
 <!-- Scene 4 -->
-<!-- Best Friends -->
+<section class="scene sunset">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl"></div>
+<div class="boy"></div>
+</div>
+
+<div class="story-box">
+<h2>Scene 4 — Best Friends</h2>
+<p>
+We became each other's routine.
+Morning messages, evening talks, and countless memories.
+</p>
+</div>
+</section>
 
 <!-- Scene 5 -->
-<!-- Misunderstandings -->
+<section class="scene sunset">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl sad"></div>
+<div class="boy sad"></div>
+</div>
+
+<div class="story-box">
+<h2>Scene 5 — Misunderstandings</h2>
+<p>
+There were misunderstandings and difficult moments.
+But somehow we always found our way back to each other.
+</p>
+</div>
+</section>
 
 <!-- Scene 6 -->
-<!-- Falling In Love -->
+<section class="scene sunset">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl love"></div>
+<div class="boy love"></div>
+</div>
+
+<div class="story-box">
+<h2>Scene 6 — Falling In Love</h2>
+<p>
+Somewhere between friendship and forever,
+we fell in love.
+</p>
+</div>
+</section>
 
 <!-- Scene 7 -->
-<!-- February 1, 2021 -->
+<section class="scene sunset">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl love"></div>
+<div class="boy love"></div>
+</div>
+
+<div class="story-box">
+<h2>Scene 7 — February 1, 2021</h2>
+<p>
+You confessed your love.
+I said yes.
+And our love story officially began.
+</p>
+</div>
+</section>
 
 <!-- Scene 8 -->
-<!-- Ukraine -->
+<section class="scene night">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl"></div>
+<div class="boy plane"></div>
+</div>
+
+<div class="story-box">
+<h2>Scene 8 — Ukraine</h2>
+<p>
+You left for Ukraine to study medicine.
+Distance arrived, but love stayed.
+</p>
+</div>
+</section>
 
 <!-- Scene 9 -->
-<!-- Home Again -->
+<section class="scene night">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl"></div>
+<div class="boy"></div>
+</div>
+
+<div class="story-box">
+<h2>Scene 9 — Home Again</h2>
+<p>
+Life had unexpected plans.
+You returned home.
+Through every challenge, we stood together.
+</p>
+</div>
+</section>
 
 <!-- Scene 10 -->
-<!-- Uzbekistan -->
+<section class="scene night">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl"></div>
+<div class="boy"></div>
+</div>
+
+<div class="story-box">
+<h2>Scene 10 — Uzbekistan</h2>
+<p>
+Another country.
+Another chapter.
+Another challenge we faced together.
+</p>
+</div>
+</section>
 
 <!-- Scene 11 -->
-<!-- Long Distance -->
+<section class="scene night">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl"></div>
+<div class="boy"></div>
+</div>
+
+<div class="story-box">
+<h2>Scene 11 — Long Distance</h2>
+<p>
+Long distance wasn't always easy.
+But our connection remained strong.
+</p>
+</div>
+</section>
 
 <!-- Scene 12 -->
-<!-- Future Together -->
+<section class="scene sunset">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl"></div>
+<div class="boy"></div>
+</div>
+
+<div class="story-box">
+<h2>Scene 12 — Future Together</h2>
+<p>
+There is still a long road ahead.
+It would be wonderful if we walked that road together.
+</p>
+</div>
+</section>
 
 <!-- Scene 13 -->
-<!-- Birthday Celebration -->
+<section class="scene sunset">
+<div class="pixel-bg"></div>
+
+<div class="characters">
+<div class="girl love"></div>
+<div class="boy love"></div>
+</div>
+
+<div class="story-box">
+<h2>🎂 Happy Birthday Mr. C ❤️</h2>
+<p>
+You never knew how proud I am of you.
+For everything you've overcome.
+For being one of the strongest yet kindest people I know.
+
+I'm grateful that I met you in this life.
+
+I love you so much.
+Happy Birthday ❤️
+</p>
+</div>
+</section>
 
 <!-- Scene 14 -->
-<div class="scene night">
-<div class="storyBox">
-<h2>The End ❤️</h2>
+<section class="scene ending">
+<div class="pixel-bg"></div>
+
+<div class="story-box">
+<h1>The End ❤️</h1>
+
 <p>
 Thank you for being part of my story.
-Happy Birthday Mr. C.
-I love you and I'll always be your best friend.
+
+No matter what happens,
+I'll always be your best friend.
+
 — Harshitha
 </p>
 </div>
+</section>
+
 </div>
 
 <div class="controls">
-<button onclick="prevScene()">⬅ Previous</button>
-<button onclick="nextScene()">Next ➡</button>
-</div>
-
+<button id="prevBtn">⬅ Previous</button>
+<button id="nextBtn">Next ➡</button>
 </div>
 
 <script>
 
-const scenes=document.querySelectorAll('.scene');
-const counter=document.getElementById('counter');
+// =========================
+// SCENE NAVIGATION
+// =========================
 
-let current=0;
+const scenes = document.querySelectorAll(".scene");
+const counter = document.getElementById("counter");
 
-function showScene(index){
+let currentScene = 0;
 
-scenes.forEach(scene=>{
-scene.classList.remove('active');
+function updateScene() {
+
+scenes.forEach(scene => {
+scene.classList.remove("active");
 });
 
-scenes[index].classList.add('active');
+scenes[currentScene].classList.add("active");
 
-counter.innerHTML=
-(index+1)+" / "+scenes.length;
+counter.innerHTML =
+(currentScene + 1) +
+" / " +
+scenes.length;
+
 }
 
-function nextScene(){
-if(current<scenes.length-1){
-current++;
-showScene(current);
-}
-}
+// =========================
+// NEXT BUTTON
+// =========================
 
-function prevScene(){
-if(current>0){
-current--;
-showScene(current);
-}
-}
+function nextScene() {
 
-/* Floating hearts */
+if(currentScene < scenes.length - 1){
 
-for(let i=0;i<40;i++){
+currentScene++;
 
-const heart=document.createElement("div");
+updateScene();
 
-heart.className="heart";
-
-heart.innerHTML=
-Math.random()>.5 ? "❤️" : "🌸";
-
-heart.style.left=
-Math.random()*100+"%";
-
-heart.style.animationDuration=
-(5+Math.random()*6)+"s";
-
-heart.style.fontSize=
-(16+Math.random()*20)+"px";
-
-document.body.appendChild(heart);
 }
 
-/* Keyboard support */
+}
 
-document.addEventListener("keydown",(e)=>{
+// =========================
+// PREVIOUS BUTTON
+// =========================
 
-if(e.key==="ArrowRight"){
+function prevScene() {
+
+if(currentScene > 0){
+
+currentScene--;
+
+updateScene();
+
+}
+
+}
+
+// =========================
+// BUTTON EVENTS
+// =========================
+
+document
+.getElementById("nextBtn")
+.addEventListener("click", nextScene);
+
+document
+.getElementById("prevBtn")
+.addEventListener("click", prevScene);
+
+// =========================
+// KEYBOARD SUPPORT
+// =========================
+
+document.addEventListener("keydown", e => {
+
+if(e.key === "ArrowRight"){
+
 nextScene();
+
 }
 
-if(e.key==="ArrowLeft"){
+if(e.key === "ArrowLeft"){
+
 prevScene();
+
 }
 
 });
 
+// =========================
+// SWIPE SUPPORT MOBILE
+// =========================
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener(
+"touchstart",
+e => {
+
+touchStartX =
+e.changedTouches[0].screenX;
+
+}
+);
+
+document.addEventListener(
+"touchend",
+e => {
+
+touchEndX =
+e.changedTouches[0].screenX;
+
+handleSwipe();
+
+}
+);
+
+function handleSwipe(){
+
+if(touchEndX < touchStartX - 50){
+
+nextScene();
+
+}
+
+if(touchEndX > touchStartX + 50){
+
+prevScene();
+
+}
+
+}
+
+// =========================
+// FLOATING HEARTS
+// =========================
+
+const heartsContainer =
+document.getElementById("hearts");
+
+function createHeart(){
+
+const heart =
+document.createElement("div");
+
+heart.classList.add("heart");
+
+const symbols = [
+"❤️",
+"💕",
+"💖",
+"🌸",
+"✨"
+];
+
+heart.innerHTML =
+symbols[
+Math.floor(
+Math.random() *
+symbols.length
+)
+];
+
+heart.style.left =
+Math.random() * 100 + "%";
+
+heart.style.fontSize =
+(18 + Math.random() * 24) + "px";
+
+heart.style.animationDuration =
+(5 + Math.random() * 8) + "s";
+
+heartsContainer.appendChild(heart);
+
+setTimeout(() => {
+
+heart.remove();
+
+},13000);
+
+}
+
+// Create hearts continuously
+
+setInterval(() => {
+
+createHeart();
+
+},500);
+
+// Initial hearts
+
+for(let i=0;i<25;i++){
+
+setTimeout(() => {
+
+createHeart();
+
+},i * 200);
+
+}
+
+// =========================
+// AUTO SPARKLES
+// =========================
+
+function createSparkle(){
+
+const sparkle =
+document.createElement("div");
+
+sparkle.innerHTML = "✨";
+
+sparkle.style.position = "fixed";
+
+sparkle.style.left =
+Math.random() * 100 + "%";
+
+sparkle.style.top =
+Math.random() * 100 + "%";
+
+sparkle.style.pointerEvents =
+"none";
+
+sparkle.style.fontSize =
+(12 + Math.random()*20) + "px";
+
+sparkle.style.opacity =
+Math.random();
+
+sparkle.style.transition =
+"2s";
+
+document.body.appendChild(
+sparkle
+);
+
+setTimeout(() => {
+
+sparkle.style.opacity = 0;
+
+},100);
+
+setTimeout(() => {
+
+sparkle.remove();
+
+},2500);
+
+}
+
+setInterval(() => {
+
+createSparkle();
+
+},1000);
+
+// =========================
+// SCENE ENTRY ANIMATION
+// =========================
+
+updateScene();
+
+// =========================
+// OPTIONAL AUTO PLAY
+// Uncomment if desired
+// =========================
+
+// setInterval(() => {
+//
+// if(currentScene < scenes.length - 1){
+//
+// currentScene++;
+//
+// updateScene();
+//
+// }
+//
+// },10000);
 </script>
 
 </body>
 </html>
-```
